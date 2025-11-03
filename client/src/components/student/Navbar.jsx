@@ -48,7 +48,7 @@ const Navbar = () => {
         onClick={() => navigate('/')}
         src={assets.logo}
         alt="Logo"
-        className="w-35 lg:w-32 scale-125 cursor-pointer transition-transform duration-300"
+        className="w-28 md:w-32 cursor-pointer transition-transform duration-300"
       />
 
       {/* Middle: General Links (Desktop) */}
