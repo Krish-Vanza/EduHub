@@ -21,22 +21,6 @@ const Player = ({ }) => {
   const [playerData, setPlayerData] = useState(null);
   const [initialRating, setInitialRating] = useState(0);
 
-    const getYouTubeVideoId = (url) => {
-    if (!url) {
-        return null;
-    }
-
-    // Regular Expression to find the video ID in various YouTube URL formats
-    const regExp = /^.(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]).*/;
-    const match = url.match(regExp);
-
-    // The video ID is typically the second capturing group, and should be 11 characters long
-    if (match && match[2].length === 11) {
-        return match[2];
-    }
-    return null;
-  };
-
   const getCourseData = () => {
     enrolledCourses.map((course) => {
       if (course._id === courseId) {
@@ -194,7 +178,7 @@ const Player = ({ }) => {
             playerData
               ? (
                 <div>
-                  <YouTube iframeClassName='w-full aspect-video' videoId={getYouTubeVideoId(playerData.lectureUrl)} />
+                  <YouTube iframeClassName='w-full aspect-video' videoId={playerData.lectureUrl.split('/').pop()} />
                   <div className='flex justify-between items-center mt-1'>
                     <p className='text-xl '>{playerData.chapter}.{playerData.lecture} {playerData.lectureTitle}</p>
                     <button onClick={() => markLectureAsCompleted(playerData.lectureId)} className='text-blue-600'>{progressData && progressData.lectureCompleted.includes(playerData.lectureId) ? 'Completed' : 'Mark Complete'}</button>
